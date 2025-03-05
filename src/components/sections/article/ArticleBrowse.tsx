@@ -78,7 +78,7 @@ export default function ArticleBrowse() {
   }
 
   return (
-    <React.Suspense fallback={<Loading />}>
+    <React.Fragment>
       {isFetching && <Loading />}
       <div className="flex items-center justify-between">
         <Form {...forms}>
@@ -196,6 +196,6 @@ export default function ArticleBrowse() {
           />
         ) : null}
       </div>
-    </React.Suspense>
+    </React.Fragment>
   )
 }
