@@ -5,7 +5,6 @@ import { Tab } from '@/components/molecules'
 
 import { useTab } from '@/store'
 import * as React from 'react'
-import { Loading } from '@/components/atoms'
 
 const renderTabs = (tabActive: number) => {
   switch (tabActive) {
@@ -25,7 +24,7 @@ export default function Home() {
   }))
 
   return (
-    <React.Suspense fallback={<Loading />}>
+    <React.Suspense fallback={<div></div>}>
       <div className="flex flex-1 flex-col gap-5">
         <section className="flex items-center justify-between">
           <div className="flex w-full border-b border-slate-300">
