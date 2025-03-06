@@ -81,7 +81,6 @@ export default function ArticleBrowse() {
 
   return (
     <React.Fragment>
-      {isFetching && <Loading />}
       <div className="flex items-center justify-between">
         <Form {...forms}>
           <form onSubmit={forms.handleSubmit(onSubmit)} className="md:w-4/12">
