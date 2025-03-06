@@ -9,11 +9,19 @@ import * as React from 'react'
 const renderTabs = (tabActive: number) => {
   switch (tabActive) {
     case 1:
-      return <ArticleBrowse />
+      return (
+        <React.Suspense fallback={<div></div>}>
+          <ArticleBrowse />
+        </React.Suspense>
+      )
     case 2:
       return <ArticleForm />
     default:
-      return <ArticleBrowse />
+      return (
+        <React.Suspense fallback={<div></div>}>
+          <ArticleBrowse />
+        </React.Suspense>
+      )
   }
 }
 
@@ -24,7 +32,6 @@ export default function Home() {
   }))
 
   return (
-    <React.Suspense fallback={<div></div>}>
       <div className="flex flex-1 flex-col gap-5">
         <section className="flex items-center justify-between">
           <div className="flex w-full border-b border-slate-300">
@@ -48,6 +55,5 @@ export default function Home() {
           {renderTabs(tabActive)}
         </section>
       </div>
-    </React.Suspense>
   )
 }
