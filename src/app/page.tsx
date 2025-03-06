@@ -2,6 +2,7 @@
 
 import { ArticleBrowse, ArticleForm } from '@/components/sections'
 import { Tab } from '@/components/molecules'
+import { Loading } from '@/components/atoms'
 
 import { useTab } from '@/store'
 import * as React from 'react'
@@ -9,19 +10,11 @@ import * as React from 'react'
 const renderTabs = (tabActive: number) => {
   switch (tabActive) {
     case 1:
-      return (
-        <React.Suspense fallback={<div></div>}>
-          <ArticleBrowse />
-        </React.Suspense>
-      )
+      return <ArticleBrowse />
     case 2:
       return <ArticleForm />
     default:
-      return (
-        <React.Suspense fallback={<div></div>}>
-          <ArticleBrowse />
-        </React.Suspense>
-      )
+      return <ArticleBrowse />
   }
 }
 
@@ -52,7 +45,9 @@ export default function Home() {
           </div>
         </section>
         <section className="flex max-w-[calc(100vw-32px)] flex-1 flex-col rounded-lg bg-white p-5 md:max-w-none">
-          {renderTabs(tabActive)}
+          <Suspense key={tabActive} fallback={<Loading />}>
+            {renderTabs(tabActive)}
+          </Suspense>
         </section>
       </div>
   )
