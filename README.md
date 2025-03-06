@@ -12,15 +12,20 @@ To set up the Article app project, please ensure that your system meets the foll
 
 After ensuring the system requirements are met, follow these steps to set up the project:
 
-1. Run the following commands in your project directory:
+1. Clone the repository (if not already cloned):
+
+```bash
+git clone <repository-url>
+cd article-app
+```
+
+2. Install all depedencies:
 
 ```bash
 npm install
 ```
 
-2. Create the `.env` file. Make sure to configure the `.env` file with the necessary
-   settings.
-3. The environment variable that used in application
+3. Create a .env file in the root directory and configure the necessary environment variables:
 
 ```bash
 NEXT_PUBLIC_API_URL=<Your API URL>
