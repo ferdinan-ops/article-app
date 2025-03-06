@@ -132,7 +132,13 @@ export default function ArticleBrowse() {
         </TableHeader>
 
         <TableBody>
-          {articles?.data.articles.length === 0 ? (
+          {isFetching ? (
+            <TableRow>
+              <TableCell colSpan={6} className="text-center">
+                <ImSpinner2 className="animate-spin text-xl text-primary" />
+              </TableCell>
+            </TableRow>
+          ) : articles?.data.articles.length === 0 ? (
             <TableRow>
               <TableCell colSpan={6} className="font-semibold italic text-zinc-500">
                 Tidak ada data
@@ -146,23 +152,8 @@ export default function ArticleBrowse() {
                 <TableCell className="capitalize">{article.title}</TableCell>
                 <TableCell className="max-w-[400px]">{he.decode(he.decode(article.content))}</TableCell>
                 <TableCell className="flex items-center gap-1" position="center">
-                  <Button
-                    className="rounded-full bg-[#CF8812] hover:bg-[#CF8812]/80"
-                    size="icon"
-                    onClick={() => {
-                      storeArticle(article)
-                      changeTabActive(2)
-                    }}
-                  >
-                    <HiPencil className="text-lg" />
-                  </Button>
-                  <Button
-                    className="rounded-full bg-[#FF1D1D] hover:bg-[#FF1D1D]/80"
-                    size="icon"
-                    onClick={() => handleDelete(article.id)}
-                  >
-                    <HiTrash className="text-lg" />
-                  </Button>
+                  <Button onClick={() => handleEdit(article)}>Edit</Button>
+                  <Button onClick={() => handleDelete(article.id)}>Hapus</Button>
                 </TableCell>
               </TableRow>
             ))
