@@ -37,7 +37,10 @@ export default function ArticleBrowse() {
 
   const { dialog } = useDialog()
   const changeTabActive = useTab((state) => state.changeTabActive)
-  const storeArticle = useArticle((state) => state.storeArticle)
+  const { storeArticle, removeArticle } = useArticle((state) => ({
+    storeArticle: state.storeArticle,
+    removeArticle: state.removeArticle
+  }))
 
   const {
     data: articles,
@@ -105,7 +108,12 @@ export default function ArticleBrowse() {
             <span>2025</span>
             <HiChevronDown />
           </DropDownButton>
-          <Button onClick={() => changeTabActive(2)}>
+          <Button 
+            onClick={() => {
+              removeArticle()
+              changeTabActive(2)
+            }}
+          >
             <HiPlus className="text-lg" />
             <span className="text-xs font-semibold">Add</span>
           </Button>
