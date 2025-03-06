@@ -4,7 +4,6 @@ import he from 'he'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
 
-import { ImSpinner2 } from 'react-icons/im'
 import { HiChevronDown, HiOutlineCalendar, HiPencil, HiPlus, HiTrash } from 'react-icons/hi2'
 
 import {
@@ -81,6 +80,7 @@ export default function ArticleBrowse() {
 
   return (
     <React.Fragment>
+      {isFetching && <Loading />}
       <div className="flex items-center justify-between">
         <Form {...forms}>
           <form onSubmit={forms.handleSubmit(onSubmit)} className="md:w-4/12">
@@ -133,13 +133,7 @@ export default function ArticleBrowse() {
         </TableHeader>
 
         <TableBody>
-          {isFetching ? (
-            <TableRow>
-              <TableCell colSpan={6} className="text-center">
-                <ImSpinner2 className="animate-spin text-xl text-primary" />
-              </TableCell>
-            </TableRow>
-          ) : articles?.data.articles.length === 0 ? (
+          {articles?.data.articles.length === 0 ? (
             <TableRow>
               <TableCell colSpan={6} className="font-semibold italic text-zinc-500">
                 Tidak ada data
