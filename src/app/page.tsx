@@ -4,7 +4,7 @@ import { ArticleBrowse, ArticleForm } from '@/components/sections'
 import { Tab } from '@/components/molecules'
 import { Loading } from '@/components/atoms'
 
-import { useTab } from '@/store'
+import { useArticle, useTab } from '@/store'
 import * as React from 'react'
 
 const renderTabs = (tabActive: number) => {
@@ -19,10 +19,16 @@ const renderTabs = (tabActive: number) => {
 }
 
 export default function Home() {
+  const removeArticle = useArticle((state) => state.removeArticle)
   const { tabActive, changeTabActive } = useTab((state) => ({
     tabActive: state.tabActive,
     changeTabActive: state.changeTabActive
   }))
+
+  const handleChangeTab = (tab: number) => {
+    removeArticle()
+    changeTabActive(tab)
+  } 
 
   return (
       <div className="flex flex-1 flex-col gap-5">
@@ -33,14 +39,14 @@ export default function Home() {
               title="Article"
               subtitle="List Article"
               className="w-full md:w-[259px]"
-              onClick={() => changeTabActive(1)}
+              onClick={() => handleChangeTab(1)}
             />
             <Tab
               active={tabActive === 2}
               title="Add / Edit"
               subtitle="Detail Article"
               className="w-full md:w-[259px]"
-              onClick={() => changeTabActive(2)}
+              onClick={() => handleChangeTab(2)}
             />
           </div>
         </section>
