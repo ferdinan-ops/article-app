@@ -154,8 +154,23 @@ export default function ArticleBrowse() {
                 <TableCell className="capitalize">{article.title}</TableCell>
                 <TableCell className="max-w-[400px]">{he.decode(he.decode(article.content))}</TableCell>
                 <TableCell className="flex items-center gap-1" position="center">
-                  <Button onClick={() => handleEdit(article)}>Edit</Button>
-                  <Button onClick={() => handleDelete(article.id)}>Hapus</Button>
+                  <Button
+                    className="rounded-full bg-[#CF8812] hover:bg-[#CF8812]/80"
+                    size="icon"
+                    onClick={() => {
+                      storeArticle(article)
+                      changeTabActive(2)
+                    }}
+                  >
+                    <HiPencil className="text-lg" />
+                  </Button>
+                  <Button
+                    className="rounded-full bg-[#FF1D1D] hover:bg-[#FF1D1D]/80"
+                    size="icon"
+                    onClick={() => handleDelete(article.id)}
+                  >
+                    <HiTrash className="text-lg" />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))
