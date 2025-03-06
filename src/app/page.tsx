@@ -45,9 +45,9 @@ export default function Home() {
           </div>
         </section>
         <section className="flex max-w-[calc(100vw-32px)] flex-1 flex-col rounded-lg bg-white p-5 md:max-w-none">
-          <Suspense key={tabActive} fallback={<Loading />}>
+          <React.Suspense key={tabActive} fallback={<Loading />}>
             {renderTabs(tabActive)}
-          </Suspense>
+          </React.Suspense>
         </section>
       </div>
   )
